@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Tracker</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in_short">Iniciar Sesión</string>
+    <string name="error_incorrect_password">Usuario o contraseña incorrectos</string>
+    <string name="logged_in_since"><![CDATA[Sesión iniciada desde <b>%1$s</b>]]></string>
+    <string name="last_update"><![CDATA[Última ubicación <b>%1$s</b>]]></string>
+    <string name="last_sync"><![CDATA[Última sincronización <b>%1$s</b>]]></string>
+    <string name="action_sign_out">Cerrar Sesión</string>
+</resources>
