@@ -18,7 +18,10 @@ class SyncWorker(context: Context, params: WorkerParameters)
         val userId = sharedPreferences.getInt(MainViewModel.CURRENT_USER, 0)
         val db = AppDatabase.getInstance(applicationContext)
         val unSyncedLocations = db!!.locationDao().getUnSyncedLocations(userId)
+        if (unSyncedLocations.isEmpty())
+            return Result.SUCCESS
 
+        // prepare request
         val apiLocations = mutableListOf<ApiSync>()
         for (location in unSyncedLocations)
         {
@@ -29,7 +32,6 @@ class SyncWorker(context: Context, params: WorkerParameters)
                     location.accuracy
             ))
         }
-
         // post request
         val credential = sharedPreferences.getString(MainViewModel.CURRENT_TOKEN, "")
         val apiClient = ApiClient.newInstance(credential!!)
