@@ -6,6 +6,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
+import ec.kleber.tesis.tracker.BuildConfig
 import ec.kleber.tesis.tracker.data.AppDatabase
 import ec.kleber.tesis.tracker.ui.MainViewModel
 import java.util.*
@@ -24,7 +25,7 @@ class LocationTracker(val context: Context, private val looper: Looper) : Observ
         try {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, object : LocationListener {
                 override fun onLocationChanged(location: Location?) {
-                    if (location!!.accuracy < 30) {
+                    if (location!!.accuracy < BuildConfig.MIN_ACCURACY) {
                         locationManager.removeUpdates(this)
                         val newLocation = ec.kleber.tesis.tracker.data.Location()
                         newLocation.accuracy = location.accuracy
