@@ -19,7 +19,7 @@ class SyncWorker(context: Context, params: WorkerParameters)
         val db = AppDatabase.getInstance(applicationContext)
         val unSyncedLocations = db!!.locationDao().getUnSyncedLocations(userId)
         if (unSyncedLocations.isEmpty())
-            return Result.SUCCESS
+            return Result.success()
 
         // prepare request
         val apiLocations = mutableListOf<ApiSync>()
@@ -41,11 +41,11 @@ class SyncWorker(context: Context, params: WorkerParameters)
             if (syncResponse.isSuccessful) {
                 val maxLocationId = unSyncedLocations.maxBy { usl -> usl.id }!!.id
                 db.locationDao().updateSyncedAt(Date(System.currentTimeMillis()), userId, maxLocationId)
-                Result.SUCCESS
+                Result.success()
             } else
-                Result.FAILURE
+                Result.failure()
         } catch (ioEx: IOException) {
-            Result.FAILURE
+            Result.failure()
         }
     }
 }

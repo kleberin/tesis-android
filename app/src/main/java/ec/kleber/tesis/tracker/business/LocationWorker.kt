@@ -37,11 +37,11 @@ class LocationWorker(context: Context, params: WorkerParameters)
         } catch (e: InterruptedException) {
             Log.d(TAG, "doWork: CountdownLatch interrupted")
             e.printStackTrace()
-            return Result.FAILURE
+            return Result.failure()
         }
 
         cleanUp()
-        return Result.SUCCESS
+        return Result.success()
     }
 
     override fun update(o: Observable?, arg: Any?) {
