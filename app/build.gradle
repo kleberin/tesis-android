@@ -19,7 +19,8 @@ android {
     buildTypes {
         buildTypes.each {
             it.buildConfigField 'String', 'API_URL', '"http://18.224.97.32/tesis/"'
-            it.buildConfigField 'int', 'MIN_ACCURACY', "50"
+            it.buildConfigField 'int', 'MIN_ACCURACY', "100"
+            it.buildConfigField 'long', 'REPEAT_INTERVAL', "1"
         }
         release {
             minifyEnabled false

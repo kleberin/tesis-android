@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.work.*
+import ec.kleber.tesis.tracker.BuildConfig
 import ec.kleber.tesis.tracker.R
 import ec.kleber.tesis.tracker.business.LocationWorker
 import ec.kleber.tesis.tracker.business.SyncWorker
@@ -119,7 +120,7 @@ class HomeFragment : Fragment() {
     private fun startLocationWorker() {
         val sharedPreferences = context!!.getSharedPreferences(MainViewModel.SHARED_PREFERENCES, Context.MODE_PRIVATE)
         if (!sharedPreferences.contains(MainViewModel.LOCATION_WORK_UUID)) {
-            val locationWork = PeriodicWorkRequestBuilder<LocationWorker>(5, TimeUnit.MINUTES)
+            val locationWork = PeriodicWorkRequestBuilder<LocationWorker>(BuildConfig.REPEAT_INTERVAL, TimeUnit.MINUTES)
                     .build()
 
             val editor = sharedPreferences.edit()
